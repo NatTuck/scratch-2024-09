@@ -1,0 +1,30 @@
+
+    Integer Types
+
+size                max (signed) value       java type
+8 bits = 1 byte     127                      byte
+16 bits = 2 bytes   32K                      short
+32 bits = 4 bytes   2G                       int
+64 bits = 8 bytes   4 Exa                    long
+
+In Python, integers are unlimited precison, so there's no max value
+
+
+   Floating Point
+
+size                sign    significand     exponent    java type
+32 bit = 4 byte     1       23              8           float
+64 bit = 8 byte     1       53              10          double
+
+In Python, float is exactly a Java double.
+
+
+   Other types:
+
+ - boolean
+ - String - logically a sequence of characters
+ - char (16 bits = 2 bytes)
+
+
+
+
