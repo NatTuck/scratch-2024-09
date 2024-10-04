@@ -1,0 +1,19 @@
+
+With an ConsList
+
+Allow duplicate items?          Yes              No
+
+add                             O(1)             O(n)
+remove                          O(n)             O(n)
+size                            O(n^2)           O(n)
+ 
+setA.contains?(item)            O(n)             O(n)
+
+
+these are all boring, we at least have to scan both lists:
+
+setA.union(setB)
+setA.intersect(setB)
+setA.difference(setB)
+setA.subset?(setB)
+setA.superset?(setB)
