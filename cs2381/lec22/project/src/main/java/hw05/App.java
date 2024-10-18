@@ -1,9 +1,5 @@
 package hw05;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
 public class App {
     public static void main(String[] args) {
 
@@ -114,13 +110,30 @@ record BinBranch<T extends Comparable<T>>(BinTree<T> left, T data, BinTree<T> ri
 
     @Override
     public BinTree<T> union(BinTree<T> that) {
-        // Add the items from both sets to the result set.
+        if (that.isLeaf()) {
+            return this;
+        }
+
+        var yy = this.add(that.data());
+        yy = yy.union(that.left());
+        yy = yy.union(that.right());
+        return yy;
     }
 
     @Override
     public BinTree<T> intersect(BinTree<T> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'intersect'");
+        if (that.isLeaf()) {
+            return that;
+        }
+
+        var item = this.data();
+        BinTree<T> yy = new BinLeaf<T>();
+        if (that.contains(item)) {
+            yy = yy.add(item);
+        }
+        var leftIntersect = this.left().intersect(that);
+        var rightIntersect = this.right().intersect(that);
+        return yy.union(leftIntersect).union(rightIntersect);
     }
 
 }
@@ -166,14 +179,12 @@ record BinLeaf<T extends Comparable<T>>() implements BinTree<T> {
 
     @Override
     public BinTree<T> union(BinTree<T> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'union'");
+        return that;
     }
 
     @Override
     public BinTree<T> intersect(BinTree<T> that) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'intersect'");
+        return this;
     }
 
 }

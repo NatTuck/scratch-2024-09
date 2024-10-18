@@ -1,6 +1,8 @@
-package lab06;
+package hw05;
 
-import java.util.function.Function;
+import java.util.Iterator;
+
+//import java.util.function.Function;
 
 /**
  * Implements a generic linked list.
@@ -9,7 +11,7 @@ import java.util.function.Function;
  *
  * @author Nat Tuck
  */
-public interface ConsList<T> {
+public interface ConsList<T> extends Iterable<T> {
     /**
      * Creates a list of the given items.
      *
@@ -18,7 +20,7 @@ public interface ConsList<T> {
      * @return       A list of those items
      */
     @SafeVarargs
-    public static <T> ConsList<T> list(T... args) {
+    public static <T> ConsList<T> of(T... args) {
         ConsList<T> ys = new Empty<T>();
         for (int ii = args.length - 1; ii >= 0; --ii) {
             ys = new Cell<T>(args[ii], ys);
@@ -73,6 +75,10 @@ public interface ConsList<T> {
      * @return     Value at index
      */
     T get(int ii);
+
+    default Iterator<T> iterator() {
+        return new ConsListIterator<T>(this);
+    }
 }
 
 /**
@@ -150,4 +156,23 @@ record Cell<T>(T first, ConsList<T> rest) implements ConsList<T> {
         var tmp = rest.toString();
         return "(" + first + " " + tmp.substring(1, tmp.length() - 1) + ")";
     }
+}
+
+class ConsListIterator<T> implements Iterator<T> {
+    ConsList<T> head;
+
+    public ConsListIterator(ConsList<T> xs) {
+        this.head = xs;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return !head.empty();
+    }
+
+    @Override
+    public T next() {
+        return head.first();
+    }
+
 }
