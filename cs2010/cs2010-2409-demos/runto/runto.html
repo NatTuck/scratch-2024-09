@@ -1,0 +1,57 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Run To Click</title>
+    <style>
+      div {
+          text-align: center;
+          margin: 4em;
+      }
+      #canv {
+          width: 800px;
+          height: 600px;
+          border: thin solid grey;
+      }
+      .img {
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="canv"></canvas>
+    </div>
+
+    <div>
+      <button id="resetBtn">Reset</Button>
+    </div>
+
+    <div>
+      <img class="img" src="ram-1.png">
+      <img class="img" src="ram-2.png">
+      <img class="img" src="ram-3.png">
+      <img class="img" src="ram-4.png">
+    </div>
+
+    <script src="./lowdash-core.js">
+    </script>
+    <script>
+      function assertEqual(aa, bb) {
+        if (!_.isEqual(aa, bb)) {
+          throw new Error(`not equal: [${aa}] vs [${bb}]`);
+        }
+      }
+
+      function assertNear(aa, bb, margin = 0.1) {
+        if (Math.abs(aa - bb) > margin) {
+          throw new Error(`not near: [${aa}] vs [${bb}]`);
+        }
+      }
+    </script>
+    <script src="./app.js">
+    </script>
+    <script src="./render.js">
+    </script>
+  </body>
+</html>
