@@ -1,0 +1,43 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ram Attack</title>
+    <style>
+      div {
+          text-align: center;
+          margin: 4em;
+      }
+      #canv {
+          width: 800px;
+          height: 600px;
+          border: thin solid grey;
+      }
+      .img {
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="canv"></canvas>
+    </div>
+
+    <div>
+      <button id="resetBtn">Reset</Button>
+    </div>
+
+    <div>
+      <img class="img" src="cannon.png">
+      <img class="img" src="ram-1.png">
+      <img class="img" src="ram-2.png">
+      <img class="img" src="ram-3.png">
+      <img class="img" src="ram-4.png">
+    </div>
+
+    <script src="./app.js">
+    </script>
+    <script src="./render.js">
+    </script>
+  </body>
+</html>
