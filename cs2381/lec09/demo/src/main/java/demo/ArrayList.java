@@ -3,7 +3,7 @@ package demo;
 import java.util.Iterator;
 
 public class ArrayList<T> implements Iterable<T> {
-    private T[] data;
+    public T[] data;
     private int size;
     public int ops;
 

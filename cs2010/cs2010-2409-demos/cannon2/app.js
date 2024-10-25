@@ -25,8 +25,9 @@ function ramIsHit(state) {
   return dx < 60 && dy < 60;
 }
 
-function newBall() {
-  return { px: 150, py: 80, vx: 2, vy: 2 };
+function newBall(ang) {
+
+  return { px: 150, py: 80, vx: 20 * Math.cos(ang), vy: 20 * Math.sin(ang) };
 }
 
 function tickBall(ball) {
@@ -35,13 +36,13 @@ function tickBall(ball) {
 }
 
 function onInit() {
-  return { tick: 0, ball: null, ramX: 800 };
+  return { tick: 0, ball: null, ang: 0, ramX: 800 };
 }
 
 function onDraw(state, {drawImage, drawCircle}) {
   console.log(state.ball);
   drawImage(ramFrame(state.tick), 0, state.ramX, 150, 100, 100);
-  drawImage('cannon.png', 0, 75, 150, 200, 100);
+  drawImage('cannon.png', -state.ang, 200, 100, 200, 100);
   if (state.ball != null) {
     drawCircle(state.ball.px, state.ball.py, 10, "black"); 
   }
@@ -51,25 +52,30 @@ function onTick(state) {
   let tick = state.tick + 1;
   if (state.ball == null) {
     return { tick: tick, ramX: moveRam(state.ramX), 
-	     ball: null };
+	         ball: null, ang: state.ang };
   }
   else {
     if (ramIsHit(state)) {
-      return { tick: tick, ramX: state.ramX + 80, ball: null };
+      return { tick: tick, ramX: state.ramX + 80, ball: null, ang: state.ang };
     }
     else {
       return { tick: tick, ramX: moveRam(state.ramX), 
-	       ball: tickBall(state.ball) };
+	           ball: tickBall(state.ball), ang: state.ang };
     }
   }
 }
 
 function onMove(state, xx, yy) {
-  return state;
+  let ang = Math.atan2(600 - yy, xx);
+  return { tick: state.tick, ball: state.ball, ang: ang, ramX: state.ramX };
 }
 
 function onClick(state, _xx, _yy) {
-  return { tick: state.tick, ball: newBall(), 
-	   ramX: state.ramX };
+  return {
+    ang: state.ang,
+    tick: state.tick,
+    ball: newBall(state.ang), 
+    ramX: state.ramX
+  };
 }
 

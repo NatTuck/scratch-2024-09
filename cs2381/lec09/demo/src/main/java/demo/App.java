@@ -9,7 +9,7 @@ public class App {
         xs.add("cat");
         xs.add("cow");
 
-        for (int ii = 0; ii < xs.size(); ++ii) {
+        for (int ii = 0; ii < xs.data.length; ++ii) {
             String xx = xs.get(ii);
             xs.set(ii, xx + "s");
         }
