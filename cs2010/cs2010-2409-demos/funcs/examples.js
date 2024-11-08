@@ -1,5 +1,75 @@
 
 
+// A Car is an object with two fields:
+//  - tankGallons: Number
+//  - milesPerGallon: Number
+
+let camry = { tankGallons: 18, milesPerGallon: 34 };
+let altima = { tankGallons: 20, milesPerGallon: 23 };
+let fusion = { tankGallons: 14, milesPerGallon: 22 };
+let ranger = { tankGallons: 22, milesPerGallon: 25 };
+
+let cars = [camry, altima, ranger, fusion];
+
+// List of Cars -> Car
+// What car can go the furthest on a tank?
+function longestRange(xs) {
+  let best = null;
+  for (let xx of xs) {
+    // Do we unpack the car or call a helper function.
+  }
+  return best;
+}
+
+
+
+// List of Car -> Number
+// In liters
+function totalTankSizeInLiters(xs) {
+  let total = 0;
+
+  for (let xx of xs) {
+    let size = tankSizeInLiters(xx);
+    total += size;
+  }
+
+  return total;
+}
+
+// Car -> Number
+function tankSizeInLiters(car) {
+  // What do we do with a Car? Unpack it
+  let { tankGallons, milesPerGallon } = car;
+
+  /// What do we do with a Car? Access its fields.
+  // car.tankGallons, car.milesPerGallon
+  const litersPerGallon = 3.79;
+  
+  let liters = tankGallons * litersPerGallon;
+  return liters;
+}
+
+// List of Cars -> Number
+// In gallons
+function totalTankSize(xs) {
+  let total = 0;
+  for (let xx of xs) {
+    let { tankGallons, milesPerGallon} = xx;
+
+    total += tankGallons;
+  }
+  return total;
+}
+
+// Car -> Number
+// Calculate distance car can go with a full tank in miles.
+function carRange(car) {
+  let { tankGallons, milesPerGallon } = car;
+  return tankGallons * milesPerGallon;
+}
+
+
+
 //xx, yy, zz, ww
 
 function lengthOfString(st) {
